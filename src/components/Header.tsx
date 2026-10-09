@@ -1,10 +1,18 @@
+'use client'
 import Image from 'next/image';
 import logo from '@/assets/logo-icon.png';
-
+import { useEffect, useState } from "react";
 const Header = () => {
-  const date = new Date().toLocaleDateString('bn-BD',{
-    dateStyle :'full'
-  })
+   const [date, setDate] = useState("");
+
+useEffect(() => {
+const today = new Date().toLocaleDateString("bn-BD", {
+dateStyle: "full",
+});
+
+setDate(today);
+
+}, []);
   return (
    <div className=" flex items-center justify-between mt-4">
   
