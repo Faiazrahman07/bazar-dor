@@ -21,10 +21,10 @@ const Marquee = async () => {
   const data: Product[] = await res.json();
 
   return (
-    <section className=" border border-gray-200 bg-white shadow-sm">
-      <div className="flex min-h-12 items-stretch">
+    <section className=" border border-white bg-white shadow-sm">
+      <div className="flex min-h-2 items-stretch">
 
-        <div className="flex min-w-0 flex-1 items-center overflow-hidden bg-emerald-50">
+        <div className="flex min-w-0 flex-1 items-center overflow-hidden bg-white">
           <MarqueeText
             direction="left"
             duration={30}
