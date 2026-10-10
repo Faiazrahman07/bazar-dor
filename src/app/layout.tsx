@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
 import Marquee from "@/components/Marquee";
+import Footer from "@/components/Footer";
 
 const Notoserifbengali= Noto_Serif_Bengali({
   
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <Toaster position="top-right" />
          {children}
      </main>
+     <Footer></Footer>
         </body>
     </html>
   );

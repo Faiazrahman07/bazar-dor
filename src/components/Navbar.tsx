@@ -25,7 +25,7 @@ const Navbar = async () => {
             <Link
               key={value.id}
               href={`/category/${value.slug}`}
-              className="shrink-0 rounded-xl px-4 py-2 text-sm font-medium text-gray-600 transition hover:bg-emerald-50 hover:text-emerald-700"
+              className="shrink-0 rounded-xl px-4 py-2 text-sm font-medium text-gray-800 transition hover:bg-emerald-50 hover:text-emerald-700"
             >
               <span className="mr-1.5">{value.icon}</span>
               {value.nameBn}
