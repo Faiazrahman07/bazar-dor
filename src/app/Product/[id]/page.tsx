@@ -44,15 +44,18 @@ const unitBn: Record<string, string> = {
 const Page = async ({ params }: PageProps) => {
   const { id } = await params;
   const res = await fetch(
-    `https://api.abcz.workers.dev/api/bazardor/products/${id}`
+    `https://openapi.programming-hero.com/api/bazardor/products/${id}`
   );
 
-  if (!res.ok) notFound();
-
+  if (!res.ok) {
+    notFound();
+  }
   const data: Product = await res.json();
 
-  if (!data.markets?.length) notFound();
-
+  if (!data.markets?.length)
+    { 
+      notFound();
+    }
   const unit = unitBn[data.unit] ?? data.unit;
   const isUp = data.today > data.yesterday;
   const diff = Math.abs(data.today - data.yesterday);
@@ -71,7 +74,7 @@ const Page = async ({ params }: PageProps) => {
   return (
     <div className="min-h-screen bg-[#f1f5f1] p-3 sm:p-4">
       <div className="mx-auto max-w-5xl space-y-4">
-        {/* ===== Top: emoji, title, subtitle, tag, unit ===== */}
+   
         <div className="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gray-100 text-3xl leading-none">
@@ -113,7 +116,7 @@ const Page = async ({ params }: PageProps) => {
           </div>
         </div>
 
-        {/* ===== Price summary + market table ===== */}
+    
         <div className="rounded-2xl border border-gray-200 bg-white px-5 py-5 shadow-sm">
           <h2 className="mb-3 text-base font-bold text-gray-900">
             দামের সারসংক্ষেপ

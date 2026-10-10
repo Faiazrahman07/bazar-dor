@@ -21,7 +21,7 @@ interface PageProps {
 const Page = async ({ params }: PageProps) => {
   const { slug } = await params;
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products?category=${slug}`
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${slug}`
   );
   const data: Product[] = await res.json();
 

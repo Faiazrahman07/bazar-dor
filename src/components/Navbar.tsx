@@ -11,7 +11,7 @@ interface Category {
 
 const Navbar = async () => {
   const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories"
+    "https://openapi.programming-hero.com/api/bazardor/categories"
   );
 
   const data: Category[] = await res.json();
