@@ -1,4 +1,5 @@
 import Productlist from '@/components/Productlist';
+import { notFound } from 'next/navigation';
 
 interface Product {
   id: string;
@@ -23,6 +24,7 @@ const Page = async ({ params }: PageProps) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/bazardor/products?category=${slug}`
   );
+ 
   const data: Product[] = await res.json();
 
   return (
