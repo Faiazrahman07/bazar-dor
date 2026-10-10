@@ -2,6 +2,7 @@
 import Link from "next/link";
 
 interface Category {
+
   id: string;
   slug: string;
   nameBn: string;
@@ -10,7 +11,7 @@ interface Category {
 
 const Navbar = async () => {
   const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories"
+    "https://api.api-store.workers.dev/api/bazardor/categories"
   );
 
   const data: Category[] = await res.json();
