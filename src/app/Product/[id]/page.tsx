@@ -1,4 +1,5 @@
 import React from "react";
+import { notFound } from "next/navigation";
 
 interface Market {
   market: string;
@@ -45,7 +46,12 @@ const Page = async ({ params }: PageProps) => {
   const res = await fetch(
     `https://api.abcz.workers.dev/api/bazardor/products/${id}`
   );
+
+  if (!res.ok) notFound();
+
   const data: Product = await res.json();
+
+  if (!data.markets?.length) notFound();
 
   const unit = unitBn[data.unit] ?? data.unit;
   const isUp = data.today > data.yesterday;
@@ -57,12 +63,16 @@ const Page = async ({ params }: PageProps) => {
 
   const lowest = Math.min(...data.markets.map((m) => m.min));
   const highest = Math.max(...data.markets.map((m) => m.max));
+  const avgPrice = rows.reduce((sum, m) => sum + m.avg, 0) / rows.length;
+
+  const lowestMarket = data.markets.find((m) => m.min === lowest)?.market;
+  const highestMarket = data.markets.find((m) => m.max === highest)?.market;
 
   return (
     <div className="min-h-screen bg-[#f1f5f1] p-3 sm:p-4">
       <div className="mx-auto max-w-5xl space-y-4">
-   
-        <div className="flex items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-white px-5 py-5 shadow-sm">
+        {/* ===== Top: emoji, title, subtitle, tag, unit ===== */}
+        <div className="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gray-100 text-3xl leading-none">
               {data.image}
@@ -71,10 +81,13 @@ const Page = async ({ params }: PageProps) => {
               <h1 className="text-2xl font-extrabold leading-tight text-gray-900">
                 {data.nameBn}
               </h1>
-              <p className="mt-0.5 text-xs text-gray-500">
-                প্রতি {unit} · {data.categoryNameBn}
+              <p className="mt-1 flex items-center gap-2 text-xs text-gray-500">
+                <span className="rounded-full bg-green-100 px-2.5 py-0.5 font-medium text-green-700">
+                  {data.categoryNameBn}
+                </span>
+                <span>প্রতি {unit}</span>
               </p>
-              <p className="mt-1 text-xs text-gray-700">
+              <p className="mt-1.5 text-xs text-gray-700">
                 গতকালের তুলনায় আজ দাম{" "}
                 <span className="font-bold">
                   {isUp ? "বেড়েছে" : "কমেছে"}
@@ -100,6 +113,7 @@ const Page = async ({ params }: PageProps) => {
           </div>
         </div>
 
+        {/* ===== Price summary + market table ===== */}
         <div className="rounded-2xl border border-gray-200 bg-white px-5 py-5 shadow-sm">
           <h2 className="mb-3 text-base font-bold text-gray-900">
             দামের সারসংক্ষেপ
@@ -113,7 +127,7 @@ const Page = async ({ params }: PageProps) => {
                 <span className="text-sm font-semibold">টাকা</span>
               </p>
               <p className="mt-0.5 text-[11px] text-gray-500">
-                সবচেয়ে কম দামের বাজার
+                সবচেয়ে কম দাম · {lowestMarket}
               </p>
             </div>
 
@@ -124,14 +138,14 @@ const Page = async ({ params }: PageProps) => {
                 <span className="text-sm font-semibold">টাকা</span>
               </p>
               <p className="mt-0.5 text-[11px] text-gray-500">
-                সবচেয়ে বেশি দামের বাজার
+                সবচেয়ে বেশি দাম · {highestMarket}
               </p>
             </div>
 
             <div className="rounded-xl border border-gray-200 px-4 py-3">
               <p className="text-[11px] text-gray-500">গড় দাম</p>
               <p className="mt-1 text-2xl font-extrabold text-green-600">
-                {toBn(data.today)}{" "}
+                {toBnPrice(avgPrice)}{" "}
                 <span className="text-sm font-semibold">টাকা</span>
               </p>
               <p className="mt-0.5 text-[11px] text-gray-500">
@@ -145,7 +159,7 @@ const Page = async ({ params }: PageProps) => {
           </h2>
 
           <div className="overflow-x-auto rounded-xl border border-gray-200">
-            <table className="w-full text-sm">
+            <table className="w-full  text-sm">
               <thead>
                 <tr className="border-b border-gray-200 text-xs font-medium text-gray-500">
                   <th className="px-4 py-3 text-left font-medium">বাজার</th>

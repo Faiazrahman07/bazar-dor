@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Serif_Bengali} from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navbar></Navbar>
         <Marquee></Marquee>
      <main>
+      <Toaster position="top-right" />
          {children}
      </main>
         </body>

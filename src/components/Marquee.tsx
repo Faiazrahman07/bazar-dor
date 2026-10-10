@@ -27,13 +27,13 @@ const Marquee = async () => {
         <div className="flex min-w-0 flex-1 items-center overflow-hidden bg-white">
           <MarqueeText
             direction="left"
-            duration={30}
+            duration={8}
           >
             <div className="flex items-center whitespace-nowrap">
               {data.map((value) => (
                 <div
                   key={value.id}
-                  className="flex items-center gap-2 border-r border-emerald-100 px-5 py-3 text-sm"
+                  className="flex items-center gap-2 border-r border-emerald-100 px-5 py-1.5 text-sm"
                 >
                   <span className="text-lg">{value.image}</span>
 

@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import logo from '@/assets/logo-icon.png';
 import { useEffect, useState } from "react";
+import Link from 'next/link';
 const Header = () => {
    const [date, setDate] = useState("");
 
@@ -29,12 +30,12 @@ setDate(today);
 
   <div className="ml-auto flex gap-2">
     
-    <button className="btn rounded-xl">
+   <Link href={'/signin'}> <button className="btn rounded-xl">
               সাইন ইন
-            </button>
-            <button className="btn btn-soft btn-secondary text-white-300 px-2 rounded-xl bg-red-700">
+            </button></Link>
+           <Link href={'/signup'}> <button className="btn btn-soft btn-secondary text-white-300 px-2 rounded-xl bg-red-700">
               সাইন আপ
-            </button>
+            </button></Link>
   </div>
 
 </div>

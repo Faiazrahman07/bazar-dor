@@ -11,7 +11,7 @@ interface Category {
 
 const Navbar = async () => {
   const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/categories"
+    "https://api.abcz.workers.dev/api/bazardor/categories"
   );
 
   const data: Category[] = await res.json();
@@ -19,7 +19,7 @@ const Navbar = async () => {
   return (
    <div>
      
-        <nav className="mt-3 flex items-center gap-2 overflow-x-auto border-t border-gray-100 py-4[scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <nav className="m-3 flex items-center gap-2 overflow-x-auto border-t border-gray-100 py-4[scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <Link href='/'>হোম</Link>
           {data.map((value) => (
             <Link
