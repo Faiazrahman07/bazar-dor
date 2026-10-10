@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Homecard from "@/components/Homecard";
+import Link from "next/link";
 
 interface Product {
   id: string;
@@ -40,7 +41,9 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {filteredProducts.map((val) => (
-               <Homecard key={val.id} Product={val}></Homecard>
+             <Link href={`/Product/${val.id}`}key={val.id}>
+               <Homecard Product={val}></Homecard>
+             </Link>
             ))}
           </div>
         </div>
@@ -58,7 +61,9 @@ export default async function Home() {
 
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {decreasedProducts.map((val) => (
-        <Homecard key={val.id} Product={val} />
+        <Link href={`/Product/${val.id}`}key={val.id}>
+               <Homecard Product={val}></Homecard>
+             </Link>
       ))}
     </div>
 
@@ -76,12 +81,15 @@ export default async function Home() {
 
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {data.map((val) => (
-        <Homecard key={val.id} Product={val} />
+        <Link href={`/Product/${val.id}`}key={val.id}>
+               <Homecard Product={val}></Homecard>
+             </Link>
       ))}
     </div>
 
   </div>
 </section>
+  
     </div>
 
   );

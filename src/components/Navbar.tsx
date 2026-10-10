@@ -20,7 +20,7 @@ const Navbar = async () => {
    <div>
      
         <nav className="mt-3 flex items-center gap-2 overflow-x-auto border-t border-gray-100 py-4[scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        
+        <Link href='/'>হোম</Link>
           {data.map((value) => (
             <Link
               key={value.id}
