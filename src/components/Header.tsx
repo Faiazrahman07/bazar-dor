@@ -3,6 +3,7 @@ import Image from 'next/image';
 import logo from '@/assets/logo-icon.png';
 import { useEffect, useState } from "react";
 import Link from 'next/link';
+import Userinfo from './Userinfo';
 const Header = () => {
    const [date, setDate] = useState("");
 
@@ -27,17 +28,8 @@ setDate(today);
       <p className='text-xs'>{date}</p>
     </div>
   </div>
-
-  <div className="ml-auto flex gap-2">
-    
-   <Link href={'/signin'}> <button className="btn rounded-xl">
-              সাইন ইন
-            </button></Link>
-           <Link href={'/signup'}> <button className="btn btn-soft btn-secondary text-white-300 px-2 rounded-xl bg-red-700">
-              সাইন আপ
-            </button></Link>
-  </div>
-
+      <Userinfo></Userinfo>
+     
 </div>
   );
 };

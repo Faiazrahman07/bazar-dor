@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { signUp } from '../../lib/auth-client';
+import { signIn, signUp } from '../../lib/auth-client';
 import toast from 'react-hot-toast';
 
 const SignupPage = () => {
@@ -37,7 +37,16 @@ toast.error("Signup করতে সমস্যা হয়েছে!");
     toast.success("অ্যাকাউন্ট তৈরি সফল হয়েছে!");
    }
 };
-
+ const handlegooglesignin =async()=>{
+    const data = await signIn.social({
+    provider: "google",
+  });
+  }
+   const handlegithub =async()=>{
+   const data = await signIn.social({
+          provider: "github"
+      });
+    }
   return (
     <div className="min-h-screen bg-[#F1F6F1] px-4 py-6 sm:py-8">
 
@@ -113,12 +122,12 @@ toast.error("Signup করতে সমস্যা হয়েছে!");
 
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
 
-              <button className="btn h-10 min-h-10 rounded-lg border border-[#DFE8DF] bg-transparent text-xs font-semibold text-gray-800 shadow-none hover:bg-gray-100">
+              <button onClick={handlegooglesignin}className="btn h-10 min-h-10 rounded-lg border border-[#DFE8DF] bg-transparent text-xs font-semibold text-gray-800 shadow-none hover:bg-gray-100">
                   <FcGoogle className="text-lg" />
                  Google দিয়ে চালিয়ে যান
               </button>
 
-              <button className="btn h-10 min-h-10 rounded-lg border border-[#DFE8DF] bg-transparent text-xs font-semibold text-gray-800 shadow-none hover:bg-gray-100">
+              <button onClick={handlegithub } className="btn h-10 min-h-10 rounded-lg border border-[#DFE8DF] bg-transparent text-xs font-semibold text-gray-800 shadow-none hover:bg-gray-100">
                   <FaGithub className="text-lg" />
                  GitHub দিয়ে চালিয়ে যান
               </button>
