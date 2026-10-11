@@ -1,17 +1,7 @@
 import Hero from "@/components/Hero";
 import Homecard from "@/components/Homecard";
 import Link from "next/link";
-
-interface Product {
-  id: string;
-  nameBn: string;
-  today: number;
-  image: string;
-  change: {
-    dir: string;
-    pct: number;
-  };
-}
+import type { Product } from "@/types/product";
 
 export default async function Home() {
   const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");

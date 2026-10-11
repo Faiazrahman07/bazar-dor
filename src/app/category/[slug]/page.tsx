@@ -1,17 +1,5 @@
 import Productlist from '@/components/Productlist';
-import { notFound } from 'next/navigation';
-
-interface Product {
-  id: string;
-  nameBn: string;
-  categoryNameBn: string;
-  today: number;
-  image: string;
-  change: {
-    dir: string;
-    pct: number;
-  };
-}
+import type { Product } from "@/types/product";
 
 interface PageProps {
   params: Promise<{

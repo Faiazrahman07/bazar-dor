@@ -1,16 +1,6 @@
 import React from "react";
+import type { Product } from "@/types/product";
 
-interface Product {
-  id: string;
-  unit: string;
-  nameBn: string;
-  today: number;
-  image: string;
-  change: {
-    dir: string;
-    pct: number;
-  };
-}
 
 interface HomecardProps {
   Product: Product;

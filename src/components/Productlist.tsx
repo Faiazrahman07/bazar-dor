@@ -2,18 +2,7 @@
 
 import { useState } from "react";
 import Homecard from "./Homecard";
-
-interface Product {
-id: string;
-nameBn: string;
-categoryNameBn: string;
-today: number;
-image: string;
-change: {
-dir: string;
-pct: number;
-};
-}
+import type { Product } from "@/types/product";
 
 interface ProductListProps {
 data: Product[];

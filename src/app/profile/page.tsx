@@ -8,21 +8,24 @@ import { type SubmitEvent } from "react";
 const ProfilePage = () => {
   const { data: session } = useSession();
   const user = session?.user;
-const handleupdate = async(e:SubmitEvent<HTMLFormElement>)=>{
+const handleupdate = async (e: SubmitEvent<HTMLFormElement>) => {
   e.preventDefault();
-     const formdata = new FormData(e.currentTarget);
-     const userdata= Object.fromEntries(formdata.entries());
-const {data,error} = await updateUser({
-       name:userdata.name
-})
-if(data){
-  toast.success("updated successfully");
-}
-if(error){
-  toast.error("there is an error");
-  return;
-}
-}
+  const formdata = new FormData(e.currentTarget);
+  const name = (formdata.get("name") as string)?.trim();
+
+  if (!name) {
+    toast.error("নাম খালি রাখা যাবে না");
+    return;
+  }
+
+  const { error } = await updateUser({ name });
+
+  if (error) {
+    toast.error(error.message || "আপডেট ব্যর্থ হয়েছে");
+    return;
+  }
+  toast.success("তথ্য সফলভাবে আপডেট হয়েছে");
+};
   return (
     <div className="min-h-screen bg-[#f0f5f0] px-5 py-10 sm:px-8">
       <div className="mx-auto max-w-4xl">
