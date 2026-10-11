@@ -1,16 +1,16 @@
 'use client'
 import Link from 'next/link';
-import React from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { signIn, signUp } from '../../lib/auth-client';
 import toast from 'react-hot-toast';
+import { type SubmitEvent } from "react";
 
 const SignupPage = () => {
   
 
   const handlesignup = async (
-    e: React.FormEvent<HTMLFormElement>
+    e:SubmitEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
 

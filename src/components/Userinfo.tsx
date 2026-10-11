@@ -41,7 +41,7 @@ const handlesignout =async ()=>{
           </button>
 
           {open && (
-            <div className="absolute right-0 top-16 z-50 w-80 rounded-3xl border border-gray-200 bg-white p-6 text-gray-800 shadow-xl">
+            <div  className="absolute right-0 top-16 z-50 w-72 max-w-[calc(100vw-2rem)] rounded-3xl border border-gray-200 bg-white p-6 text-gray-800 shadow-xl sm:w-80">
 
           
               <div className="mb-6">

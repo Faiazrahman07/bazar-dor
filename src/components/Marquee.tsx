@@ -1,4 +1,3 @@
-
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
@@ -18,17 +17,17 @@ const Marquee = async () => {
     "https://openapi.programming-hero.com/api/bazardor/products"
   );
 
+  if (!res.ok) {
+    throw new Error("Failed to fetch products");
+  }
+
   const data: Product[] = await res.json();
 
   return (
-    <section className=" border border-white bg-white shadow-sm">
-      <div className="flex min-h-2 items-stretch">
-
+    <section className="border border-white bg-white shadow-sm">
+      <div className="flex items-stretch">
         <div className="flex min-w-0 flex-1 items-center overflow-hidden bg-white">
-          <MarqueeText
-            direction="left"
-            duration={8}
-          >
+          <MarqueeText direction="left" duration={8}>
             <div className="flex items-center whitespace-nowrap">
               {data.map((value) => (
                 <div
@@ -42,7 +41,7 @@ const Marquee = async () => {
                   </span>
 
                   <span className="font-bold text-gray-900">
-                    ৳{value.today}
+                    ৳{value.today.toLocaleString("bn-BD")}
                   </span>
 
                   <span className="text-xs text-gray-500">
@@ -64,14 +63,13 @@ const Marquee = async () => {
                       ? "▼"
                       : "–"}
 
-                    {Math.abs(value.change.pct)}%
+                    {Math.abs(value.change.pct).toLocaleString("bn-BD")}%
                   </span>
                 </div>
               ))}
             </div>
           </MarqueeText>
         </div>
-
       </div>
     </section>
   );

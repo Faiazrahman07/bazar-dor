@@ -1,36 +1,34 @@
-'use client'
+'use client';
+
 import Image from 'next/image';
 import logo from '@/assets/logo-icon.png';
-import { useEffect, useState } from "react";
-import Link from 'next/link';
 import Userinfo from './Userinfo';
+
 const Header = () => {
-   const [date, setDate] = useState("");
-
-useEffect(() => {
-const today = new Date().toLocaleDateString("bn-BD", {
-dateStyle: "full",
-});
-
-setDate(today);
-
-}, []);
+ const date = new Date().toLocaleDateString('bn-BD',{
+    dateStyle :'full'
+  })
   return (
-   <div className=" flex items-center justify-between mt-4">
-  
-  <div className=" flex items-center gap-2 ml-3.5">
-   <div className='bg-green-700 p-3 rounded-2xl'>
-     <Image  height={36} src={logo} alt="" />
-   </div>
+    <div className="mt-4 flex items-center justify-between">
+      <div className="ml-3.5 flex items-center gap-2">
+        <div className="rounded-2xl bg-green-700 p-3">
+          <Image
+            height={36}
+            src={logo}
+            alt="বাজার দর লোগো"
+          />
+        </div>
 
-    <div>
-      <p className='text-2xl text-red-700 font-bold'>বাজার দর</p>
-      <p className='text-xs'>{date}</p>
+        <div>
+          <p className="text-2xl font-bold text-red-700">
+            বাজার দর
+          </p>
+          <p className="text-xs">{date}</p>
+        </div>
+      </div>
+
+      <Userinfo />
     </div>
-  </div>
-      <Userinfo></Userinfo>
-     
-</div>
   );
 };
 

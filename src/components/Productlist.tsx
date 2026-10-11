@@ -45,14 +45,14 @@ return ( <div className="w-full">
       name="sort"
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      className="rounded-xl border p-2 w-20 border-gray-300"
+        className="w-44 rounded-xl border border-gray-300 p-2 text-sm sm:w-52"
     >
       <option value="default">ডিফল্ট</option>
       <option value="low-to-high">দাম কম থেকে বেশি</option>
       <option value="high-to-low">দাম বেশি থেকে কম</option>
     </select>
   </div>
-  <h2 className="text-s leading-6 text-gray-500">
+  <h2 className="text-sm leading-6 text-gray-500">
             মোট {data.length}টি পণ্য দেখানো হচ্ছে
           </h2>
   <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -4,11 +4,11 @@ import { signOut, updateUser, useSession } from "@/lib/auth-client";
 import Image from "next/image";
 import img from '@/assets/Image.jpeg';
 import toast from "react-hot-toast";
-
+import { type SubmitEvent } from "react";
 const ProfilePage = () => {
   const { data: session } = useSession();
   const user = session?.user;
-const handleupdate = async(e:React.FormEvent<HTMLFormElement>)=>{
+const handleupdate = async(e:SubmitEvent<HTMLFormElement>)=>{
   e.preventDefault();
      const formdata = new FormData(e.currentTarget);
      const userdata= Object.fromEntries(formdata.entries());

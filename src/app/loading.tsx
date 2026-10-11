@@ -1,5 +1,6 @@
 const Loading = () => {
-return ( <div className="min-h-screen bg-gray-50 px-4 py-8"> <div className="mx-auto max-w-7xl">
+return ( 
+<div className="min-h-screen bg-gray-50 px-4 py-8"> <div className="mx-auto max-w-7xl">
 <div className="mb-8"> 
   <div className="mb-3 h-8 w-48 animate-pulse rounded-md bg-gray-200">
 
